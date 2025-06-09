@@ -4,7 +4,6 @@ use std::ffi::CStr;
 use std::fs::File;
 use std::io::{Error, ErrorKind, Read, Result};
 use std::mem::MaybeUninit;
-use std::os::fd::OwnedFd;
 use std::os::unix::io::AsRawFd;
 use std::os::unix::net::UnixStream;
 use std::os::unix::process::CommandExt;
@@ -18,6 +17,7 @@ use libc::{c_int, TIOCSCTTY};
 use log::error;
 use polling::{Event, PollMode, Poller};
 use rustix_openpty::openpty;
+use rustix_openpty::rustix::fd::OwnedFd;
 use rustix_openpty::rustix::termios::Winsize;
 #[cfg(any(target_os = "linux", target_os = "macos"))]
 use rustix_openpty::rustix::termios::{self, InputModes, OptionalActions};
